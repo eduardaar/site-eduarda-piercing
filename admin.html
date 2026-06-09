@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Painel administrativo do Estudio Aura Clinic para agenda clinica, estoque de joias e acompanhamento de atendimentos."
+    />
+    <title>Painel Clinico | Estudio Aura Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body class="admin-body">
+    <main class="admin-shell">
+      <section class="login-view" data-login-view>
+        <div class="login-card">
+          <a class="brand login-brand" href="index.html" aria-label="Voltar para o site">
+            <span class="brand-mark">ES</span>
+            <span>
+              <strong>Eduarda Santos</strong>
+              <small>Estudio Aura Clinic</small>
+            </span>
+          </a>
+
+          <div class="login-copy">
+            <p class="eyebrow">Acesso restrito</p>
+            <h1>Painel clinico e operacional</h1>
+            <p>
+              Agenda, ficha clinica, estoque de joias e indicadores em um fluxo unico para organizar o atendimento.
+            </p>
+          </div>
+
+          <form class="login-form" data-login-form>
+            <label>
+              CPF
+              <input type="text" name="cpf" inputmode="numeric" autocomplete="username" placeholder="000.000.000-00" required />
+            </label>
+            <label>
+              Senha
+              <input type="password" name="password" autocomplete="current-password" placeholder="Digite sua senha" required />
+            </label>
+            <button class="btn btn-primary" type="submit">Entrar no painel</button>
+            <p class="login-hint">Acesso demonstrativo: CPF 000.000.000-00 e senha aura123</p>
+            <p class="form-message" data-login-message role="status"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="dashboard-view is-hidden" data-dashboard-view>
+        <aside class="admin-sidebar">
+          <a class="brand" href="index.html" aria-label="Voltar para o site">
+            <span class="brand-mark">ES</span>
+            <span>
+              <strong>Aura Clinic</strong>
+              <small>Painel interno</small>
+            </span>
+          </a>
+          <nav class="admin-nav" aria-label="Navegacao do painel">
+            <a href="#visao-geral">Visao geral</a>
+            <a href="#agenda-clinica">Agenda clinica</a>
+            <a href="#estoque">Estoque</a>
+            <a href="#estrategia">Estrategia</a>
+          </nav>
+          <button class="btn btn-secondary" type="button" data-logout>Sair</button>
+        </aside>
+
+        <div class="admin-content">
+          <header class="admin-topbar">
+            <div>
+              <p class="eyebrow">Gestao integrada</p>
+              <h1>Agenda clinica com estoque conectado</h1>
+            </div>
+            <a class="btn btn-primary" href="https://wa.me/5577998632417" target="_blank" rel="noopener">WhatsApp</a>
+          </header>
+
+          <section class="metric-grid" id="visao-geral" data-metrics></section>
+
+          <section class="panel-grid">
+            <article class="admin-panel agenda-panel" id="agenda-clinica">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Agenda clinica</p>
+                  <h2>Novo atendimento</h2>
+                </div>
+                <span class="status-pill">Ficha + estoque</span>
+              </div>
+
+              <form class="appointment-form" data-appointment-form>
+                <div class="form-grid">
+                  <label>
+                    Cliente
+                    <input type="text" name="client" placeholder="Nome completo" required />
+                  </label>
+                  <label>
+                    CPF do cliente
+                    <input type="text" name="clientCpf" inputmode="numeric" placeholder="000.000.000-00" />
+                  </label>
+                  <label>
+                    Data
+                    <input type="date" name="date" required />
+                  </label>
+                  <label>
+                    Hora
+                    <input type="time" name="time" required />
+                  </label>
+                  <label>
+                    Procedimento
+                    <select name="procedure" required>
+                      <option value="">Selecione</option>
+                      <option>Perfuração de orelha</option>
+                      <option>Perfuração nasal</option>
+                      <option>Perfuração corporal</option>
+                      <option>Troca de joia</option>
+                      <option>Spa de joias</option>
+                      <option>Retorno de cicatrização</option>
+                    </select>
+                  </label>
+                  <label>
+                    Regiao/anatomia
+                    <input type="text" name="area" placeholder="Ex.: conch, nostril, umbigo" required />
+                  </label>
+                  <label>
+                    Joia vinculada ao estoque
+                    <select name="stockItem" data-stock-select required></select>
+                  </label>
+                  <label>
+                    Quantidade
+                    <input type="number" name="quantity" min="1" value="1" required />
+                  </label>
+                  <label>
+                    Status
+                    <select name="status" required>
+                      <option>Agendado</option>
+                      <option>Confirmado</option>
+                      <option>Em acompanhamento</option>
+                      <option>Concluido</option>
+                    </select>
+                  </label>
+                  <label>
+                    Retorno previsto
+                    <input type="date" name="followUp" />
+                  </label>
+                </div>
+
+                <fieldset class="clinical-box">
+                  <legend>Quesitos clinicos</legend>
+                  <div class="check-grid">
+                    <label><input type="checkbox" name="consent" /> Termo de consentimento assinado</label>
+                    <label><input type="checkbox" name="allergy" /> Relata alergia</label>
+                    <label><input type="checkbox" name="medication" /> Usa medicamento continuo</label>
+                    <label><input type="checkbox" name="diabetes" /> Diabetes ou alteracao glicemica</label>
+                    <label><input type="checkbox" name="pregnancy" /> Gestante ou lactante</label>
+                    <label><input type="checkbox" name="keloid" /> Historico de queloide</label>
+                    <label><input type="checkbox" name="infection" /> Sinais de irritacao/infeccao local</label>
+                    <label><input type="checkbox" name="aftercare" /> Orientacoes pos-procedimento entregues</label>
+                  </div>
+                  <label>
+                    Observacoes clinicas
+                    <textarea name="notes" rows="4" placeholder="Registre anatomia, restricoes, lote da joia, intercorrencias e combinados."></textarea>
+                  </label>
+                </fieldset>
+
+                <div class="form-actions">
+                  <button class="btn btn-primary" type="submit">Salvar atendimento</button>
+                  <button class="btn btn-secondary" type="reset">Limpar</button>
+                </div>
+                <p class="form-message" data-appointment-message role="status"></p>
+              </form>
+            </article>
+
+            <article class="admin-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Linha do tempo</p>
+                  <h2>Proximos horarios</h2>
+                </div>
+              </div>
+              <div class="appointment-list" data-appointment-list></div>
+            </article>
+          </section>
+
+          <section class="panel-grid inventory-section" id="estoque">
+            <article class="admin-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Estoque</p>
+                  <h2>Entrada rapida</h2>
+                </div>
+              </div>
+              <form class="stock-form" data-stock-form>
+                <label>
+                  Produto
+                  <input type="text" name="name" placeholder="Ex.: Labret flat back" required />
+                </label>
+                <label>
+                  Categoria
+                  <select name="category" required>
+                    <option>Titanio</option>
+                    <option>Ouro</option>
+                    <option>Zirconia</option>
+                    <option>Basicas</option>
+                    <option>Premium</option>
+                    <option>Insumos</option>
+                  </select>
+                </label>
+                <div class="form-grid compact">
+                  <label>
+                    Quantidade
+                    <input type="number" name="quantity" min="0" value="1" required />
+                  </label>
+                  <label>
+                    Minimo
+                    <input type="number" name="minimum" min="0" value="2" required />
+                  </label>
+                  <label>
+                    Custo
+                    <input type="number" name="cost" min="0" step="0.01" value="0" />
+                  </label>
+                  <label>
+                    Venda
+                    <input type="number" name="price" min="0" step="0.01" value="0" />
+                  </label>
+                </div>
+                <button class="btn btn-primary" type="submit">Adicionar ao estoque</button>
+              </form>
+            </article>
+
+            <article class="admin-panel inventory-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Inventario</p>
+                  <h2>Joias e insumos</h2>
+                </div>
+                <button class="btn btn-secondary" type="button" data-reset-demo>Restaurar demo</button>
+              </div>
+              <div class="inventory-table" data-inventory-table></div>
+            </article>
+          </section>
+
+          <section class="admin-panel strategy-panel" id="estrategia">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Estrategia</p>
+                <h2>Leitura operacional</h2>
+              </div>
+            </div>
+            <div class="strategy-grid" data-strategy></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
